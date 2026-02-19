@@ -1,4 +1,5 @@
 #!/usr/bin/make -f
+.SUFFIXES:
 
 TARGET := $(shell basename $$PWD).out
 

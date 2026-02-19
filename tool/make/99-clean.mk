@@ -1,3 +1,3 @@
 .PHONY: clean
 clean:
-	rm -f ${OBJECT.dir}/* ${TARGET}
+	-${RM} ${OBJECT.dir}/* ${TARGET}
