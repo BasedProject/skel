@@ -7,8 +7,8 @@ CFLAGS   := -std=c23 -pthread
 CPPFLAGS := -D_GNU_SOURCE
 LDFLAGS  := -lm
 
-SOURCE.dir      := source
-OBJECT.dir      := object
+SOURCE.dir := source
+OBJECT.dir := object
 
 HEADER.pch.filter :=
 
