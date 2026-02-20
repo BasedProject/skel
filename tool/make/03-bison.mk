@@ -1,5 +1,7 @@
 SOURCE.gen := $(wildcard ${SOURCE.dir}/*.yy.c ${SOURCE.dir}/*.tab.c)
 SOURCE.gen := $(SOURCE.gen:${SOURCE.dir}/%=%)
+SOURCE.gen := ${SOURCE.gen:.yy.c=.yy.o}
+SOURCE.gen := ${SOURCE.gen:.tab.c=.tab.o}
 ALSO += ${SOURCE.gen}
 
 vpath %.l ${SOURCE.d}
