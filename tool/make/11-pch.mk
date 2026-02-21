@@ -1,16 +1,19 @@
 HEADER.pch.filter ?=
-HEADER.orig := $(filter-out ${HEADER.pch.filter},$(wildcard ${SOURCE.dir}/*.h ${OBJECT.dir}/*.h ${SOURCE.dir}/*.H ${OBJECT.dir}/*.H ${SOURCE.dir}/*.hpp ${OBJECT.dir}/*.hpp ${SOURCE.dir}/*.h++ ${OBJECT.dir}/*.h++))
+HEADER.orig.cxx := $(wildcard ${SOURCE.dir}/*.H ${OBJECT.dir}/*.H ${SOURCE.dir}/*.hpp ${OBJECT.dir}/*.hpp ${SOURCE.dir}/*.h++ ${OBJECT.dir}/*.h++)
+HEADER.orig.c   := $(wildcard ${SOURCE.dir}/*.h ${OBJECT.dir}/*.h)
+HEADER.orig := $(filter-out ${HEADER.pch.filter},${HEADER.orig.c} ${HEADER.orig.cxx})
 HEADER.orig := $(HEADER.orig:${SOURCE.dir}/%=%)
 HEADER.orig := $(HEADER.orig:${OBJECT.dir}/%=%)
 
-HEADER.pch := $(addprefix ${OBJECT.dir}/, ${HEADER.orig:.c=})
-ALSO       += ${HEADER.pch}
+HEADER.pch := $(addprefix ${OBJECT.dir}/, ${HEADER.orig})
 
 ifeq (${CC},gcc)
         HEADER.pch := $(addsuffix .gch,${HEADER.pch})
 else
         HEADER.pch := $(addsuffix .pch,${HEADER.pch})
 endif
+
+ALSO       += ${HEADER.pch}
 
 vpath %.h ${SOURCE.dir} ${OBJECT.dir}
 

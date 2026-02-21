@@ -1,4 +1,6 @@
-SOURCE.orig := $(wildcard ${SOURCE.dir}/*.c ${SOURCE.dir}/*.cpp ${SOURCE.dir}/*.c++ ${SOURCE.dir}/*.C)
+SOURCE.orig.cxx := $(wildcard ${SOURCE.dir}/*.cpp ${SOURCE.dir}/*.c++ ${SOURCE.dir}/*.C)
+SOURCE.orig.c := $(wildcard ${SOURCE.dir}/*.c)
+SOURCE.orig := $(SOURCE.orig.c) $(SOURCE.orig.cxx)
 SOURCE.orig := $(SOURCE.orig:${SOURCE.dir}/%=%)
 SOURCE.orig := ${SOURCE.orig:.c=.o}
 SOURCE.orig := ${SOURCE.orig:.cpp=.o}
@@ -13,9 +15,15 @@ vpath %.cpp ${SOURCE.dir}
 vpath %.c++ ${SOURCE.dir}
 vpath %.C ${SOURCE.dir}
 
+# this file / 99-all.mk is designed for a single target executable object, not library generation.
+# Therefore, we'll call linkage exactly once and I can avoid touching Bourne Shell.
 ${TARGET}: ${OBJECT.orig}
 	@echo "LD	$@"
-	@${LINK.c} -o "$@" $+ ${LDFLAGS}
+ifeq (${SOURCE.orig.cxx},)
+	@${LINK.c} -o "$@" $+
+else
+	@${LINK.cpp} -o "$@" $+
+endif
 
 ${OBJECT.dir}/%.o: %.c
 	@echo "CC	$<"

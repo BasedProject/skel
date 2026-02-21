@@ -5,9 +5,11 @@ ifeq (${LD},ld)
         endif
 endif
 
-ifeq (${CC},cc)
+# If CC or CXX is set, we'll assume the correct compiler collection.
+
+ifeq (${CXX}${CC},cppcc)
         ifneq ($(shell which clang 2> /dev/null),)
-                CC := clang
+                CC  := clang
                 CXX := clang++
         else
                 ifneq ($(shell which gcc 2> /dev/null),)
@@ -16,5 +18,12 @@ ifeq (${CC},cc)
                 else
                 $(error GCC & Clang not available.)
                 endif
+        endif
+else
+        ifeq (${CC},gcc)
+                CXX := g++
+        endif
+        ifeq (${CC},clang)
+                CXX := clang++
         endif
 endif
