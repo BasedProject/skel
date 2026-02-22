@@ -27,3 +27,15 @@ else
                 CXX := clang++
         endif
 endif
+
+ifneq ($(findstring clang, $(CC)),)
+IS_CLANG := 1
+else
+IS_CLANG := 0
+endif
+
+ifneq ($(findstring gcc, $(CC)),)
+IS_GCC := 1
+else
+IS_GCC := 0
+endif

@@ -22,12 +22,12 @@ ${TARGET}: ${OBJECT.orig}
 ifeq (${SOURCE.orig.cxx},)
 	@${LINK.c} -o "$@" $+
 else
-	@${LINK.cpp} -o "$@" $+
+	${LINK.cpp} -o "$@" $+
 endif
 
 ${OBJECT.dir}/%.o: %.c
 	@echo "CC	$<"
-	@${COMPILE.c} -o $@ $<
+	${COMPILE.c} -o $@ $<
 
 # C++
 

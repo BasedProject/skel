@@ -2,8 +2,12 @@ ifneq (${DEBUG},1)
         CFLAGS   += -fstack-protector-strong
         CXXFLAGS += -fstack-protector-strong
         ifneq (${PLATFORM},Darwin)
-                CFLAGS   += -fstack-clash-protection -fPIE -pie
-                CXXFLAGS += -fstack-clash-protection -fPIE -pie
+                CFLAGS   += -fstack-clash-protection
+                CXXFLAGS += -fstack-clash-protection
+                ifeq (${IS_GCC},1)
+                        CFLAGS   += -fPIE -pie
+                        CXXFLAGS += -fPIE -pie
+                endif
                 LDFLAGS  += -Wl,-z,relro,-z,now
         endif
         CPPFLAGS += -D_FORTIFY_SOURCE=3

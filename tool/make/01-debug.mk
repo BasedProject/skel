@@ -3,18 +3,6 @@ SANITIZE       ?= 0
 VECTORIZED_ALL ?= 0
 VECTORIZED     ?= 0
 
-ifneq ($(findstring clang, $(CC)),)
-IS_CLANG := 1
-else
-IS_CLANG := 0
-endif
-
-ifneq ($(findstring gcc, $(CC)),)
-IS_GCC := 1
-else
-IS_GCC := 0
-endif
-
 ifneq (${SANITIZE},0)
         DEBUG := 1
 endif
@@ -41,8 +29,10 @@ ifneq (${DEBUG},0)
 else
         ifeq (${IS_GCC},1)
                 CFLAGS += -flto=auto
+                CXXFLAGS += -flto=auto
         else
-                CFLAGS += -flto
+                CFLAGS   += -flto
+                CXXFLAGS += -flto
         endif
         CFLAGS   += -ftree-vectorize -march=x86-64 -mtune=generic
         CXXFLAGS += -ftree-vectorize -march=x86-64 -mtune=generic
