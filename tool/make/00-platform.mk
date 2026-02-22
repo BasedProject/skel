@@ -1,5 +1,5 @@
 ifeq ($(shell uname), Darwin)
-  PLATFORM = Mac
+  PLATFORM = Darwin
 else
   PLATFORM = Linux
 endif

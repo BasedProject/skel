@@ -22,8 +22,13 @@ ifeq (${DEBUG},1)
         CFLAGS   += -fno-inline -Wall -Wextra -Wpedantic -Wshadow -Wundef -fno-omit-frame-pointer
         CXXFLAGS += -fno-inline -Wall -Wextra -Wpedantic -Wshadow -Wundef -fno-omit-frame-pointer
 else
-        CFLAGS   += -flto=auto -ftree-vectorize -march=x86-64 -mtune=generic
-        CXXFLAGS += -flto=auto -ftree-vectorize -march=x86-64 -mtune=generic
+        ifeq (${CC},gcc)
+                CFLAGS += -flto=auto
+        else
+                CFLAGS += -flto
+        endif
+        CFLAGS   += -ftree-vectorize -march=x86-64 -mtune=generic
+        CXXFLAGS += -ftree-vectorize -march=x86-64 -mtune=generic
         CPPFLAGS += -DNDEBUG
 endif
 

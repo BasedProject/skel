@@ -4,6 +4,7 @@ OPTION_NONE=0,
 OPTION_HELP,
 };
 %}
+%language=ANSI-C
 struct options { char * name; int number; };
 %%
 help, OPTION_HELP
