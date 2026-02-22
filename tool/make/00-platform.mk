@@ -3,4 +3,3 @@ ifeq ($(shell uname), Darwin)
 else
   PLATFORM = Linux
 endif
-$(info Platform: $(PLATFORM))

@@ -5,9 +5,9 @@ ifeq (${LD},ld)
         endif
 endif
 
-# If CC or CXX is set, we'll assume the correct compiler collection.
+# If CC is set, we'll assume the respective compiler collection.
 
-ifeq (${CXX}${CC},cppcc)
+ifeq (${CC},cc)
         ifneq ($(shell which clang 2> /dev/null),)
                 CC  := clang
                 CXX := clang++
