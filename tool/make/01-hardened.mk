@@ -1,7 +1,7 @@
 ifneq (${DEBUG},1)
         CFLAGS   += -fstack-protector-strong
         CXXFLAGS += -fstack-protector-strong
-        ifneq (${PLATFORM},Darwin)
+        ifneq (${PLATFORM},Mac)
                 CFLAGS   += -fstack-clash-protection
                 CXXFLAGS += -fstack-clash-protection
                 ifeq (${IS_GCC},1)

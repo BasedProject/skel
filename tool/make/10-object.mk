@@ -1,5 +1,5 @@
 SOURCE.orig.cxx := $(wildcard ${SOURCE.dir}/*.cpp ${SOURCE.dir}/*.c++ ${SOURCE.dir}/*.C)
-SOURCE.orig.c := $(wildcard ${SOURCE.dir}/*.c)
+SOURCE.orig.c   := $(wildcard ${SOURCE.dir}/*.c)
 SOURCE.orig := $(SOURCE.orig.c) $(SOURCE.orig.cxx)
 SOURCE.orig := $(SOURCE.orig:${SOURCE.dir}/%=%)
 SOURCE.orig := ${SOURCE.orig:.c=.o}
@@ -22,12 +22,12 @@ ${TARGET}: ${OBJECT.orig}
 ifeq (${SOURCE.orig.cxx},)
 	@${LINK.c} -o "$@" $+
 else
-	${LINK.cpp} -o "$@" $+
+	@${LINK.cpp} -o "$@" $+
 endif
 
 ${OBJECT.dir}/%.o: %.c
 	@echo "CC	$<"
-	${COMPILE.c} -o $@ $<
+	@${COMPILE.c} -o $@ $<
 
 # C++
 
