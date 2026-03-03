@@ -28,6 +28,7 @@ DEBUG          ?= 0
 SANITIZE       ?= 0
 VECTORIZED_ALL ?= 0
 VECTORIZED     ?= 0
+DO_LTO         ?= 1 		# always nulled if library
 
 ## 11-lib.mk
 
