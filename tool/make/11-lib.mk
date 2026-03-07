@@ -19,15 +19,15 @@ OBJECT.lib := $(filter-out ${NOT_APART_OF_LIBRARY},${OBJECT.orig})
 LIBTARGET ?= lib$(basename $(TARGET))
 
 ${OBJECT.dir}/${LIBTARGET}.a: ${OBJECT.lib}
-	@echo "AR	$@"
-	@ar rcs -o "$@" $+
+	$(call quiet_echo,AR	$<)
+	${QUIET}ar rcs -o "$@" $+
 
 ${OBJECT.dir}/${LIBTARGET}.so: ${OBJECT.lib}
-	@echo "SO	$@"
+	$(call quiet_echo,SO	$<)
 ifeq (${SOURCE.orig.cxx},)
-	@${LINK.c} -shared -o "$@" $+
+	${QUIET}${LINK.c} -shared -o "$@" $+
 else
-	@${LINK.cpp} -shared -o "$@" $+
+	${QUIET}${LINK.cpp} -shared -o "$@" $+
 endif
 
 ALSO += ${OBJECT.dir}/${LIBTARGET}.a ${OBJECT.dir}/${LIBTARGET}.so
