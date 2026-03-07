@@ -59,7 +59,13 @@ Optional. Provides Hardening flags for Release builds.
 Specifies to use the Mold linker if possible.
 
 ## 03-peru.mk
-Disabled by default. Pulls in peru files.
+Disabled by default. Pulls in peru defined files.
+
+This assumes preunified builds, meaning it will continue if it does not have access to `peru`.
+This is the recommended style of things as peru may not work on all systems and should increase reproducibility at the cost of storage.
+Though if you think you'd prefer explode-on-failure:
+
+- `PERU_MUST_WORK` provided.
 
 ## 10-object.mk
 Critical. Compiles code into objects.

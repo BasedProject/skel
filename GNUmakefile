@@ -30,6 +30,10 @@ VECTORIZED_ALL ?= 0
 VECTORIZED     ?= 0
 DO_LTO         ?= 1 		# always nulled if library
 
+## 03-peru.mk
+
+PERU_MUST_WORK := 0             # make peru nonoptional
+
 ## 11-lib.mk
 
 NOT_APART_OF_LIBRARY :=
