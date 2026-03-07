@@ -17,7 +17,7 @@ OBJECT.dir := object
 MAKE.dir := tool/make
 MAKE.filter := 11-lib.mk 05-peru.mk
 
-SEARCH.dir := ${SOURCE.dir} ${SOURCE.dir}/random ${SOURCE.dir}/experimental
+SEARCH.dir := ${SOURCE.dir} ${SOURCE.dir}/level-2
 
 ## compiler
 
