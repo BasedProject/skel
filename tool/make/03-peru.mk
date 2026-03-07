@@ -1,3 +1,12 @@
+HELP_ME += \
+"03-peru.mk\n" \
+"Disabled by default. Provides support for\n" \
+"<https://github.com/buildinspace/peru>\n"\
+"chains in peru and will automatically update when applicable.\n" \
+"HAS_PERU provided.\n" \
+"PERU_MUST_WORK configurable provided.\n" \
+"\n"
+
 ALSO += .peru/lastimports .WAIT
 
 HAS_PERU := 0

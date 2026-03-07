@@ -1,3 +1,9 @@
+HELP_ME += \
+"01-hardened.mk\n" \
+"uses DEBUG=1 to add compiler security features.\n" \
+"Check file for details.\n" \
+"\n"
+
 ifneq (${DEBUG},1)
         CFLAGS   += -fstack-protector-strong
         CXXFLAGS += -fstack-protector-strong

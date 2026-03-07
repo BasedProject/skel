@@ -4,6 +4,13 @@
 #  You either need to manhandle the compiler (every include needs to be in command line)
 #   OR have thing be inlined in the source tree (not happening.)
 
+HELP_ME += \
+"11-pch.mk\n" \
+"Disabled. Do not use. Currently in disposed due to how GCC/Clang load PCH files.\n" \
+"Also note that most developers are bad people and don't really think about this.\n" \
+"COULD be rewritten to inline .pch'd files into source, however this breaks the universal fundamental law of not shitting on the dining table.\n" \
+"\n"
+
 ifeq (1,)
 
 HEADER.pch.filter ?=
@@ -35,28 +42,12 @@ ${OBJECT.dir}/%.h.gch: %.h
 
 # C++
 
-${OBJECT.dir}/%.H.pch: %.H
+${OBJECT.dir}/%.H.pch: %.H %.hpp %.h++
 	@echo "PCH	$<"
-	@${COMPILE.cpp} ${PCHFLAGS} -x c-header -o $@ $<
+	@${COMPILE.cpp} ${PCHFLAGS} -x c++-header -o $@ $<
 
-${OBJECT.dir}/%.H.gch: %.H
+${OBJECT.dir}/%.H.gch: %.H %.hpp %.h++
 	@echo "GCH	$<"
-	@${COMPILE.cpp} ${PCHFLAGS} -x c-header -o $@ $<
-
-${OBJECT.dir}/%.hpp.pch: %.hpp
-	@echo "PCH	$<"
-	@${COMPILE.cpp} ${PCHFLAGS} -x c-header -o $@ $<
-
-${OBJECT.dir}/%.hpp.gch: %.hpp
-	@echo "GCH	$<"
-	@${COMPILE.cpp} ${PCHFLAGS} -x c-header -o $@ $<
-
-${OBJECT.dir}/%.hpp.pch: %.h++
-	@echo "PCH	$<"
-	@${COMPILE.cpp} ${PCHFLAGS} -x c-header -o $@ $<
-
-${OBJECT.dir}/%.hpp.gch: %.h++
-	@echo "GCH	$<"
-	@${COMPILE.cpp} ${PCHFLAGS} -x c-header -o $@ $<
+	@${COMPILE.cpp} ${PCHFLAGS} -x c++-header -o $@ $<
 
 endif

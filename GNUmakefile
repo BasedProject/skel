@@ -22,6 +22,12 @@ MAKE.filter := 11-lib.mk 03-peru.mk
 # Externally overridable with CC=.. CXX=..
 PREFER_GCC := 0
 
+## 00-verbose.mk
+
+# Megabroken, define here only if you want the `1' behavior,
+# or inline or on command line.
+# VERBOSE := 1
+
 ## 01-debug.mk
 
 DEBUG          ?= 0
@@ -52,9 +58,5 @@ YFLAGS += --debug
 ## 11-pch.mk
 
 HEADER.pch.filter :=
-
-###
-
-# Keep source flat. All filenames have optional, assumed prefixes.
 
 -include ${MAKE.dir}/make.mk

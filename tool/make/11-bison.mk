@@ -1,3 +1,9 @@
+HELP_ME += \
+"11-bison.mk\n" \
+"Builds lex/yacc files automatically.\n" \
+"Chains in SOURCE.gen for generated source from Flex/Bison.\n" \
+"\n"
+
 SOURCE.gen := $(wildcard ${SOURCE.dir}/*.yy.c ${SOURCE.dir}/*.tab.c)
 SOURCE.gen := $(SOURCE.gen:${SOURCE.dir}/%=%)
 SOURCE.gen := ${SOURCE.gen:.yy.c=.yy.o}

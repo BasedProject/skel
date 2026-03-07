@@ -1,3 +1,10 @@
+HELP_ME += \
+"10-object.mk\n" \
+"Critical makefile that provides all building and source location for C/C++.\n" \
+"Provides SOURCE.orig.cxx, SOURCE.orig.c, SOURCE.orig\n" \
+"Includes OBJECT.dir in CPPFLAGS\n" \
+"\n"
+
 SOURCE.orig.cxx := $(wildcard ${SOURCE.dir}/*.cpp ${SOURCE.dir}/*.c++ ${SOURCE.dir}/*.C)
 SOURCE.orig.c   := $(wildcard ${SOURCE.dir}/*.c)
 SOURCE.orig := $(SOURCE.orig.c) $(SOURCE.orig.cxx)
@@ -18,27 +25,21 @@ vpath %.C ${SOURCE.dir}
 # this file / 99-all.mk is designed for a single target executable object, not library generation.
 # Therefore, we'll call linkage exactly once and I can avoid touching Bourne Shell.
 ${TARGET}: ${OBJECT.orig}
-	@echo "LD	$@"
+	$(call quiet_echo,LD	$<)
 ifeq (${SOURCE.orig.cxx},)
-	@${LINK.c} -o "$@" $+
+	${QUIET}${LINK.c} -o "$@" $+
 else
-	@${LINK.cpp} -o "$@" $+
+	${QUIET}${LINK.cpp} -o "$@" $+
 endif
 
 ${OBJECT.dir}/%.o: %.c
-	@echo "CC	$<"
-	@${COMPILE.c} -o $@ $<
+	$(call quiet_echo,CC	$<)
+	${QUIET}${COMPILE.c} -o $@ $<
 
 # C++
 
-${OBJECT.dir}/%.o: %.cpp
-	@echo "C++	$<"
-	@${COMPILE.cpp} -o $@ $<
-
-${OBJECT.dir}/%.o: %.c++
-	@echo "C++	$<"
-	@${COMPILE.cpp} -o $@ $<
-
-${OBJECT.dir}/%.o: %.C
-	@echo "C++	$<"
-	@${COMPILE.cpp} -o $@ $<
+${OBJECT.dir}/%.o: %.cpp %.c++ %.C
+ifeq (VERBOSE,0)
+	$(call quiet_echo,CPP	$<)
+endif
+	${QUIET}${COMPILE.cpp} -o $@ $<
