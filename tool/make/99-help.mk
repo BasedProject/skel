@@ -1,5 +1,6 @@
 HELP_ME := \
 "<<< Skelemake 9001 Definitely Helpful Information (DHI) >>>\n\n" \
+"99-help.mk\n" \
 "This is a biotechnical build something or other meant to do everything all of the time.\n" \
 "We provide a few important general concepts:\n" \
 "We define variables inline with ?= if they are externally configurable (i.e. command line, GNUmakefile, inline)\n" \
@@ -14,6 +15,7 @@ HELP_ME := \
 "Keep source flat.\n" \
 "You can change this behaviour with a new file and vpath, obviously, see BasedProject/libchad 10-object.mk for an example.\n" \
 "All filenames have optional, assumed prefixes, i.e. source/object, this is the primary benefit of this skelington.\n" \
+"Use SEARCH.dir, which is critical for source/object-wise subdirectories.\n" \
 "\n\n" \
 ${HELP_ME}
 

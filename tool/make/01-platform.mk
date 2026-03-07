@@ -1,5 +1,5 @@
 HELP_ME += \
-"00-platform\n" \
+"01-platform.mk\n" \
 "provides PLATFORM, which is currently only designed for Linux and MacOS\n" \
 "On MacOS: \"Mac\"\n" \
 "On Linux: \"Linux\"\n" \

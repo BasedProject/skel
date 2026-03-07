@@ -1,5 +1,5 @@
 HELP_ME += \
-"01-debug.mk\n" \
+"03-debug.mk\n" \
 "Provides DEBUG, when nonzero will provide debugging information.\n" \
 "Provides SANITIZE, when nonzero will provide -fsantize maximally for relavant compiler.\n" \
 "Note that SANITIZE isn't trying to cover all possible usages of -fsan, just the most generally useful.\n" \

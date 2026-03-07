@@ -42,11 +42,27 @@ ${OBJECT.dir}/%.h.gch: %.h
 
 # C++
 
-${OBJECT.dir}/%.H.pch: %.H %.hpp %.h++
+${OBJECT.dir}/%.H.pch: %.H
 	@echo "PCH	$<"
 	@${COMPILE.cpp} ${PCHFLAGS} -x c++-header -o $@ $<
 
-${OBJECT.dir}/%.H.gch: %.H %.hpp %.h++
+${OBJECT.dir}/%.H.gch: %.H
+	@echo "GCH	$<"
+	@${COMPILE.cpp} ${PCHFLAGS} -x c++-header -o $@ $<
+
+${OBJECT.dir}/%.hpp.pch: %.hpp
+	@echo "PCH	$<"
+	@${COMPILE.cpp} ${PCHFLAGS} -x c++-header -o $@ $<
+
+${OBJECT.dir}/%.hpp.gch: %.hpp
+	@echo "GCH	$<"
+	@${COMPILE.cpp} ${PCHFLAGS} -x c++-header -o $@ $<
+
+${OBJECT.dir}/%.h++.pch: %.h++
+	@echo "PCH	$<"
+	@${COMPILE.cpp} ${PCHFLAGS} -x c++-header -o $@ $<
+
+${OBJECT.dir}/%.h++.gch: %.h++
 	@echo "GCH	$<"
 	@${COMPILE.cpp} ${PCHFLAGS} -x c++-header -o $@ $<
 

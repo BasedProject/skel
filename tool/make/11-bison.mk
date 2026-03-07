@@ -4,14 +4,15 @@ HELP_ME += \
 "Chains in SOURCE.gen for generated source from Flex/Bison.\n" \
 "\n"
 
-SOURCE.gen := $(wildcard ${SOURCE.dir}/*.yy.c ${SOURCE.dir}/*.tab.c)
-SOURCE.gen := $(SOURCE.gen:${SOURCE.dir}/%=%)
+SOURCE.gen := $(call search, yy.c tab.c)
+$(call flatten,SOURCE.orig)
+SOURCE.gen := $(addprefix ${OBJECT.dir}/,${SOURCE.gen})
 SOURCE.gen := ${SOURCE.gen:.yy.c=.yy.o}
 SOURCE.gen := ${SOURCE.gen:.tab.c=.tab.o}
 ALSO += ${SOURCE.gen}
 
-vpath %.l ${SOURCE.d}
-vpath %.y ${SOURCE.d}
+vpath %.l ${SEARCH.d}
+vpath %.y ${SEARCH.d}
 vpath %.yy.c ${OBJECT.d}
 vpath %.tab.c ${OBJECT.d}
 

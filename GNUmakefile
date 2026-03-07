@@ -15,20 +15,22 @@ SOURCE.dir := source
 OBJECT.dir := object
 
 MAKE.dir := tool/make
-MAKE.filter := 11-lib.mk 03-peru.mk
+MAKE.filter := 11-lib.mk 05-peru.mk
 
-## 00-compiler.mk
+SEARCH.dir := ${SOURCE.dir} ${SOURCE.dir}/random ${SOURCE.dir}/experimental
+
+## compiler
 
 # Externally overridable with CC=.. CXX=..
 PREFER_GCC := 0
 
-## 00-verbose.mk
+## verbose
 
 # Megabroken, define here only if you want the `1' behavior,
 # or inline or on command line.
 # VERBOSE := 1
 
-## 01-debug.mk
+## debug
 
 DEBUG          ?= 0
 SANITIZE       ?= 0
@@ -36,26 +38,25 @@ VECTORIZED_ALL ?= 0
 VECTORIZED     ?= 0
 DO_LTO         ?= 1 		# always nulled if library
 
-## 03-peru.mk
+## peru
 
 PERU_MUST_WORK := 0             # make peru nonoptional
 
-## 11-lib.mk
+## lib
 
 NOT_APART_OF_LIBRARY :=
 #LIBTARGET :=
 
-## 11-bison.mk
+## bison
 
 LFLAGS += --debug --trace
 YFLAGS += --debug
 
-## 11-gperf.mk
+## gperf
 
-#GPERF := gperf
-#GPERF.orig :=
+# GPERF := gperf
 
-## 11-pch.mk
+## pch
 
 HEADER.pch.filter :=
 

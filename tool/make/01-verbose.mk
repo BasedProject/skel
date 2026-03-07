@@ -1,5 +1,5 @@
 HELP_ME += \
-"00-verbose.mk\n" \
+"01-verbose.mk\n" \
 "Sets VERBOSE. Regarding a bug: VERBOSE can't be set in GNUmakefile.\n" \
 "VERBOSE must only be used in command line or outright defined in file.\n" \
 "QUIET is provided for optional QUIET things that can be revoked with enabled VERBOSE.\n" \

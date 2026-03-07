@@ -9,21 +9,20 @@ HELP_ME += \
 "Chains in library construction (.a, .so).\n" \
 "\n"
 
-NOT_APART_OF_LIBRARY := $(NOT_APART_OF_LIBRARY:${SOURCE.dir}/%=%)
+$(call flatten, NOT_APART_OF_LIBRARY)
 NOT_APART_OF_LIBRARY := $(NOT_APART_OF_LIBRARY:${OBJECT.dir}/%=%)
 NOT_APART_OF_LIBRARY := $(addprefix ${OBJECT.dir}/,${NOT_APART_OF_LIBRARY})
-NOT_APART_OF_LIBRARY := $(NOT_APART_OF_LIBRARY:.c=.o)
-NOT_APART_OF_LIBRARY := $(NOT_APART_OF_LIBRARY:.cpp=.o)
+$(call convert,GPERF.orig,o,c cpp c++ C)
 OBJECT.lib := $(filter-out ${NOT_APART_OF_LIBRARY},${OBJECT.orig})
 
 LIBTARGET ?= lib$(basename $(TARGET))
 
 ${OBJECT.dir}/${LIBTARGET}.a: ${OBJECT.lib}
-	$(call quiet_echo,AR	$<)
+	$(call quiet_echo,AR	$@)
 	${QUIET}ar rcs -o "$@" $+
 
 ${OBJECT.dir}/${LIBTARGET}.so: ${OBJECT.lib}
-	$(call quiet_echo,SO	$<)
+	$(call quiet_echo,SO	$@)
 ifeq (${SOURCE.orig.cxx},)
 	${QUIET}${LINK.c} -shared -o "$@" $+
 else

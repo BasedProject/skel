@@ -1,5 +1,5 @@
 HELP_ME += \
-"01-hardened.mk\n" \
+"03-hardened.mk\n" \
 "uses DEBUG=1 to add compiler security features.\n" \
 "Check file for details.\n" \
 "\n"

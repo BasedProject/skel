@@ -5,12 +5,14 @@ HELP_ME += \
 "Provides GPERF configurable for overrides.\n" \
 "\n"
 
-vpath %.gperf ${SOURCE.dir}
-
 GPERF      ?= gperf
-GPERF.orig := $(wildcard ${SOURCE.dir}/*.gperf)
-GPERF.orig := $(GPERF.orig:${SOURCE.dir}/%.gperf=${OBJECT.dir}/%.h)
+GPERF.orig := $(call search, gperf)
+$(call flatten,GPERF.orig)
+GPERF.orig := $(addprefix ${OBJECT.dir}/,${GPERF.orig})
+$(call convert,GPERF.orig,h,gperf)
 ALSO       += ${GPERF.orig}
+
+vpath %.gperf   ${SEARCH.dir}
 
 ${OBJECT.dir}/%.h: %.gperf
 	$(call quiet_echo,GPERF	$<)

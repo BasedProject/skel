@@ -1,5 +1,5 @@
 HELP_ME += \
-"00-compiler.mk\n" \
+"01-compiler.mk\n" \
 "LD will be automatically set to mold if possible. override LD from ld or set USE_MOLD to 0.\n" \
 "CC will be automatically set to gcc if PREFER_GCC=1 is set. Otherwise Clang, or error.\n" \
 "May be overwritten. If either compiler missing, will default to the other regardless of preference.\n" \
