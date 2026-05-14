@@ -9,10 +9,8 @@ HELP_ME := \
 "ALSO: which are targets to made alongside the real TARGET\n" \
 "(placed before TARGET however make is usually ran in parallel and by defition\n" \
 "should always permit this, however your milage may vary depending on your ability.)\n" \
-"You may use the .WAIT feature to turn this into a well-defined staged build.\n" \
 "HELP_ME is a chained variable meant to define this command, and each file should contribute to it.\n" \
-"We prefer isolation of all generetade files, no makefile should modify the SOURCE.dir." \
-"Keep source flat.\n" \
+"Isolation of all generated files is important." \
 "You can change this behaviour with a new file and vpath, obviously, see BasedProject/libchad 10-object.mk for an example.\n" \
 "All filenames have optional, assumed prefixes, i.e. source/object, this is the primary benefit of this skelington.\n" \
 "Use SEARCH.dir, which is critical for source/object-wise subdirectories.\n" \
@@ -21,4 +19,4 @@ ${HELP_ME}
 
 .PHONY: help
 help:
-	@echo ${HELP_ME}
+	@echo -e ${HELP_ME} | less

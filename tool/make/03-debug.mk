@@ -1,5 +1,6 @@
 HELP_ME += \
 "03-debug.mk\n" \
+"Attempts to provide strong defaults when it comes to compiler flags. Heavily targetted towards C.\n" \
 "Provides DEBUG, when nonzero will provide debugging information.\n" \
 "Provides SANITIZE, when nonzero will provide -fsantize maximally for relavant compiler.\n" \
 "Note that SANITIZE isn't trying to cover all possible usages of -fsan, just the most generally useful.\n" \

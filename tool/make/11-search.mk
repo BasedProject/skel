@@ -1,6 +1,6 @@
 HELP_ME += \
 "11-search.mk\n" \
-"Provides SEARCH.object, recipes thereof, and chains.\n" \
+"Builds SEARCH.object tree." \
 "\n"
 
 SEARCH.object := ${addprefix ${OBJECT.dir}/,${SEARCH.dir:${SOURCE.dir}/%=%}}

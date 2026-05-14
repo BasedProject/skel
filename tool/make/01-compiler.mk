@@ -1,12 +1,11 @@
 HELP_ME += \
 "01-compiler.mk\n" \
 "LD will be automatically set to mold if possible. override LD from ld or set USE_MOLD to 0.\n" \
-"CC will be automatically set to gcc if PREFER_GCC=1 is set. Otherwise Clang, or error.\n" \
-"May be overwritten. If either compiler missing, will default to the other regardless of preference.\n" \
+"CC will be automatically set to gcc if PREFER_GCC=1 is set. Otherwise Clang, or stops with missing compiler error.\n" \
+"If one compiler missing, will default to the other regardless of preference. CC may be overwritten.\n" \
 "Overwritten will always be taken as priority.\n" \
-"CC defines CXX if it is a known good compiler\n" \
-"(EXACTLY gcc or EXACTLY clang, this is not comprehensive or investigative.)\n" \
-"This file provides the state IS_GCC and IS_CLANG, which will both be set accordingly.\n" \
+"CC defines CXX if it is GCC/Clang.\n\n" \
+"This file provides the IS_GCC and IS_CLANG, which will both be set accordingly by a string search.\n" \
 "\n"
 
 USE_MOLD ?= 1

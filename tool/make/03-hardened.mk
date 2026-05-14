@@ -1,7 +1,7 @@
 HELP_ME += \
 "03-hardened.mk\n" \
-"uses DEBUG=1 to add compiler security features.\n" \
-"Check file for details.\n" \
+"uses DEBUG=0 to add compiler security features.\n" \
+"Check file for details. Targeted towards C.\n" \
 "\n"
 
 ifneq (${DEBUG},1)

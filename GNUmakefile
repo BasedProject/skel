@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 .SUFFIXES:
 
+# dirname.out
 TARGET := $(shell basename $$PWD).out
 
 ## make.mk
@@ -59,5 +60,9 @@ YFLAGS += --debug
 ## pch
 
 HEADER.pch.filter :=
+
+## dependency
+
+#DEPEND := $(OBJECT.dir)/.depend
 
 -include ${MAKE.dir}/make.mk

@@ -1,16 +1,18 @@
 HELP_ME += \
 "10-object.mk\n" \
 "Critical makefile that provides all building and source location for C/C++.\n" \
-"Provides SOURCE.orig.cxx, SOURCE.orig.c, SOURCE.orig\n" \
+"Aquires all files from the search tree, see SEARCH.dir\n" \
+"Provides SOURCE.orig.cxx, SOURCE.orig.c, SOURCE.orig as expectant data\n" \
 "Includes OBJECT.dir in CPPFLAGS\n" \
 "\n"
 
 SOURCE.orig.cxx := $(call search, cpp C c++)
 SOURCE.orig.c   := $(call search, c)
-SOURCE.orig := $(SOURCE.orig.c) $(SOURCE.orig.cxx)
-$(call flatten,SOURCE.orig)
-$(call convert,SOURCE.orig,o,c cpp c++ C)
-OBJECT.orig += $(addprefix ${OBJECT.dir}/, ${SOURCE.orig})
+SOURCE.orig     := $(SOURCE.orig.c) $(SOURCE.orig.cxx)
+SOURCE          := $(SOURCE.orig)
+$(call flatten,SOURCE)
+$(call convert,SOURCE,o,c cpp c++ C)
+OBJECT.orig += $(addprefix ${OBJECT.dir}/, ${SOURCE})
 
 CPPFLAGS += -I${OBJECT.dir}
 
