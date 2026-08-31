@@ -53,8 +53,8 @@ ifneq (${DEBUG},0)
                         CXXFLAGS += -g
                 endif
         endif
-        CFLAGS   += -fno-inline -Wall -Wextra -Wpedantic -Wshadow -Wundef -fno-omit-frame-pointer
-        CXXFLAGS += -fno-inline -Wall -Wextra -Wpedantic -Wshadow -Wundef -fno-omit-frame-pointer
+        CFLAGS   := -fno-inline -Wall -Wextra -Wpedantic -Wshadow -Wundef -fno-omit-frame-pointer ${CFLAGS}
+        CXXFLAGS := -fno-inline -Wall -Wextra -Wpedantic -Wshadow -Wundef -fno-omit-frame-pointer ${CXXFLAGS}
 else
         ifeq (${DO_LTO},1)
                 ifeq (${IS_GCC},1)
